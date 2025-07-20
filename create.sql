@@ -4,45 +4,49 @@ USE lab_mysql;
 
 DROP TABLE IF EXISTS cars;
 CREATE TABLE cars(
-    `vin` BIGINT UNSIGNED NOT NULL PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    `vin` VARCHAR(255) NOT NULL ,
     `manufacturer` VARCHAR(255) NOT NULL,
     `model` VARCHAR(255) NOT NULL,
-    `year` DATE NOT NULL,
+    `year` INT NOT NULL,
     `color` VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS customers;
 CREATE TABLE customers(
-    `customer id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    `customer_id` VARCHAR(255) NOT NULL,
     `name` VARCHAR(255) NOT NULL,
-    `phone number` VARCHAR(255) NOT NULL,
+    `phone_number` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NULL,
     `address` VARCHAR(255) NOT NULL,
     `city` VARCHAR(255) NOT NULL,
-    `state/province` LINESTRING NOT NULL,
-    `country` LINESTRING NOT NULL,
-    `zip/postal code` VARCHAR(255) NOT NULL
+    `state/province` VARCHAR(255) NOT NULL,
+    `country` VARCHAR(255) NOT NULL,
+    `zip/postal_code` VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS salespersons;
 CREATE TABLE salespersons(
-    `staff id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `store` LINESTRING NOT NULL,
-    `name` LINESTRING NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    `staff_id` VARCHAR(255) NOT NULL,
+    `store` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS invoices;
 CREATE TABLE invoices(
-    `invoice number` VARCHAR(255) NOT NULL PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    `invoice_number` VARCHAR(255) NOT NULL,
     `date` DATE NOT NULL,
-    `vin` BIGINT NOT NULL,
-    `customer id` BIGINT NOT NULL,
-    `staff id` BIGINT NOT NULL
-    -- PRIMARY KEY(`invoice number`)
+    `car` INT NOT NULL,
+    `customer_id` INT NOT NULL,
+    `staff_id` INT NOT NULL
 );
-ALTER TABLE
-    `salespersons` ADD CONSTRAINT `salespersons_name_foreign` FOREIGN KEY(`name`) REFERENCES `invoices`(`staff id`);
-ALTER TABLE
-    `invoices` ADD CONSTRAINT `invoices_vin_foreign` FOREIGN KEY(`vin`) REFERENCES `cars`(`vin`);
-ALTER TABLE
-    `customers` ADD CONSTRAINT `customers_name_foreign` FOREIGN KEY(`name`) REFERENCES `invoices`(`customer id`);
+
+-- ALTER TABLE
+--     `salespersons` ADD CONSTRAINT `salespersons_name_foreign` FOREIGN KEY(`name`) REFERENCES `invoices`(`staff id`);
+-- ALTER TABLE
+--     `invoices` ADD CONSTRAINT `invoices_vin_foreign` FOREIGN KEY(`vin`) REFERENCES `cars`(`vin`);
+-- ALTER TABLE
+--     `customers` ADD CONSTRAINT `customers_name_foreign` FOREIGN KEY(`name`) REFERENCES `invoices`(`customer id`);
