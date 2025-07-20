@@ -31,12 +31,21 @@ CHANGE COLUMN `zip/postal_code` `cust_zipcode` INT;
 -- MODIFY COLUMN cust_zipcode INT;
 DESCRIBE customers;
 
-INSERT INTO customers(id,`cust_id` , `cust_name` , `cust_phone` , `cust_email` , `cust_address` , `cust_city` , `cust_state` , `cust_country` , `cust_zipcode` )
+INSERT INTO customers(id,`cust_id` , `cust_name` , `cust_phone` , `cust_address` , `cust_city` , `cust_state` , `cust_country` , `cust_zipcode` )
 VALUES
-( 0,10001 , "Pablo Picasso" , "+34 636 17 63 82" ,, "Paseo de la Chopera, 14" , "Madrid" , "Madrid" , "Spain" , 28045),
-( 1,20001 , "Abraham Lincoln" , "+1 305 907 7086" ,, "120 SW 8th St" , "Miami" , "Florida" , "United States" , 33130),
-( 2,30001 , "Napoléon Bonaparte" , "+33 1 79 75 40 00" ,, "40 Rue du Colisée" , "Paris" , "Île-de-France" , "France" , 75008);
+( 1,10001 , "Pablo Picasso" , "+34 636 17 63 82" , "Paseo de la Chopera, 14" , "Madrid" , "Madrid" , "Spain" , 28045),
+( 2,20001 , "Abraham Lincoln" , "+1 305 907 7086" , "120 SW 8th St" , "Miami" , "Florida" , "United States" , 33130),
+( 3,30001 , "Napoléon Bonaparte" , "+33 1 79 75 40 00" , "40 Rue du Colisée" , "Paris" , "Île-de-France" , "France" , 75008);
 
+-- INSERT INTO customers(id,`cust_id` , `cust_name` , `cust_phone` , `cust_email` , `cust_address` , `cust_city` , `cust_state` , `cust_country` , `cust_zipcode` )
+-- VALUES
+-- ( 1,10001 , "Pablo Picasso" , "+34 636 17 63 82" ,, "Paseo de la Chopera, 14" , "Madrid" , "Madrid" , "Spain" , 28045),
+-- ( 2,20001 , "Abraham Lincoln" , "+1 305 907 7086" ,, "120 SW 8th St" , "Miami" , "Florida" , "United States" , 33130),
+-- ( 3,30001 , "Napoléon Bonaparte" , "+33 1 79 75 40 00" ,, "40 Rue du Colisée" , "Paris" , "Île-de-France" , "France" , 75008);
+
+DESCRIBE customers;
+
+SELECT * FROM customers;
 
 ALTER TABLE salespersons
 MODIFY COLUMN name VARCHAR(20),
@@ -55,13 +64,14 @@ VALUES
 
 SELECT * FROM salespersons;
 
-ALTER TABLE invoices
-CHANGE COLUMN staff_id salespersons INT;
+-- ALTER TABLE invoices
+-- CHANGE COLUMN staff_id salesperson INT,
+-- CHANGE COLUMN customer_id customer VARCHAR(20);
 
-INSERT INTO invoices("id" , "invoice_number" , "date" , "car" , "customer" , "salesperson")
+INSERT INTO invoices(id, `invoice_number` , `date` , `car` , `customer_id` , `staff_id`)
 VALUES
-(1 , "852399038" , 22-08-2018 , 1 , 1 , 3),
-(2 , "731166526" , 31-12-2018 , 3 , 3 , 5),
-(3 , "271135104" , 22-01-2019 , 2 , 2 , 7 );
+(1 , "852399038" , "2018-08-22" , 1 , 1 , 3),
+(2 , "731166526" , "2018-12-31" , 3 , 3 , 5),
+(3 , "271135104" , "2019-01-22" , 2 , 2 , 7 );
 
-SELECT * FROM salespersons;
+SELECT * FROM invoices;

@@ -41,7 +41,10 @@ CREATE TABLE invoices(
     `date` DATE NOT NULL,
     `car` INT NOT NULL,
     `customer_id` INT NOT NULL,
-    `staff_id` INT NOT NULL
+    `staff_id` INT NOT NULL,
+    FOREIGN KEY (car) REFERENCES cars(id),
+    FOREIGN KEY (customer_id) REFERENCES customers(id),
+    FOREIGN KEY (staff_id) REFERENCES salespersons(id)
 );
 
 -- ALTER TABLE
